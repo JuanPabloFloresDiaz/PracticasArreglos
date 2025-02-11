@@ -91,5 +91,49 @@ class Program
         {
             Console.WriteLine($"{numeros[j]} elevado a la {exponentes} = {resultados[j]}");
         }
+
+        /// <summary>
+        /// Programa que simula un sistema de login con validación de usuario y contraseña.
+        /// Se definen dos arreglos: uno con nombres de usuario y otro con sus respectivas contraseñas.
+        /// Se solicita al usuario ingresar su nombre de usuario y contraseña.
+        /// Se verifica si el usuario existe y si la contraseña es correcta.
+        /// Se muestran mensajes dependiendo del resultado(éxito o fallo en el login).
+        /// </summary>
+        
+        // Arreglos con usuarios y contraseñas predefinidos
+        string[] usuarios = { "admin", "usuario1", "invitado" };
+        string[] claves = { "1234", "pass1", "guest" };
+
+        Console.WriteLine("=== Sistema de Login ===");
+
+        Console.Write("Ingrese su usuario: ");
+        string usuarioIngresado = Teclado.LeerTexto();
+
+        Console.Write("Ingrese su contraseña: ");
+        string claveIngresada = Teclado.LeerTexto();
+
+        if (Autenticar(usuarios, claves, usuarioIngresado, claveIngresada))
+        {
+            Console.WriteLine("\n¡Acceso concedido! Bienvenido, " + usuarioIngresado);
+        }
+        else
+        {
+            Console.WriteLine("\nError: Usuario o contraseña incorrectos.");
+        }
+
+        /// <summary>
+        /// Clase que maneja la autenticación de usuarios.
+        /// </summary>
+        static bool Autenticar(string[] usuarios, string[] claves, string usuario, string clave)
+        {
+            for (int i = 0; i < usuarios.Length; i++)
+            {
+                if (usuarios[i] == usuario && claves[i] == clave)
+                {
+                    return true; // Usuario y clave coinciden
+                }
+            }
+            return false; // No se encontró coincidencia
+        }
     }
 }
